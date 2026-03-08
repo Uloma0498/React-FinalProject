@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import Movie from "../components/ui/Movie";
 import { movies } from "../data";
 
-const Movies = ({ movies: initialMovies }) => {
+
+const Movies = ({ movies: initialMovies, onSelectMovie }) => {
   const [movies, setMovies] = useState(initialMovies);
 
   function filterMovies(filter) {
@@ -14,8 +15,8 @@ const Movies = ({ movies: initialMovies }) => {
     setMovies(movies.slice().sort((a, b) => b.Year - a.Year));
   } if (filter === "OLDEST_TO_NEWEST") {
     setMovies(movies.slice().sort((a, b) => a.Year - b.Year));
-  } 
   }
+}
 
   return (
     <div id="movies">

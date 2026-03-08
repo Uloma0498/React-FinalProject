@@ -14,7 +14,7 @@ function App() {
         <Nav />
         <Route path="/" exact component={Home} />
         <Route path="/movies" exact render={() => <Movies movies={movies} />} />
-        <Route path="/movies/:id" render={() => <MovieDetails movies={movies} />} />
+        <Route path="/movies/:imdbid" render={() => <MovieDetails movies={movies} />} />
         <Footer />
       </div>
     </Router>           

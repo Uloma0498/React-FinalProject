@@ -29,14 +29,14 @@ const MovieDetails = ({ movies }) => {
               </figure>
               <div className="movie__selected--description">
                 <h2 className="movie__selected--title">{movies[0].Title}</h2>
-                <p className="movie__selected--release">Release Date: {movies[0].Year}</p>
-                <p className="movie__selected--rating">Rating: {movies[0].imdbRating}/10</p>
+                <p className="movie__selected--release">Year: {movies[0].Year}</p>
+                <p className="movie__selected--rating">Rating: {movies[0].imdbRating}</p>
                 <div className="movie__summary">
                   <div className="movie__summary--title">
                     Summary
                   </div> 
                   <p className="movie__summary--para">
-                    Dominic Toretto (Vin Diesel) is a Los Angeles street racer who makes a living hijacking trucks. When Brian O'Conner (Paul Walker), an undercover cop, is assigned to investigate the hijackings, he infiltrates Toretto's crew and becomes friends with him. However, as Brian gets closer to Toretto, he finds himself torn between his loyalty to his job and his loyalty to his new friend.
+                    {movies[0].Plot}
                   </p>
                 </div>
                 <button className="btn">
