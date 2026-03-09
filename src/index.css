@@ -359,6 +359,7 @@ FEATURES
 .movies {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 .movies__header {
@@ -377,6 +378,7 @@ FEATURES
 .movies {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 .movie {

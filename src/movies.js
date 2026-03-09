@@ -96,3 +96,16 @@ imdbID: "tt1905041"
 
 
 
+export const API_KEY = "2cc30c4d";
+
+export const fetchMovies = async (fast) => {
+  const response = await fetch(`https://www.omdbapi.com/?s=${fast}&apikey=${API_KEY}`);
+  const data = await response.json();
+  return data.Search || [];
+};
+
+export const fetchMovieDetails = async (imdbID) => {
+  const response = await fetch(`https://www.omdbapi.com/?i=${imdbID}&apikey=${API_KEY}`);
+  const data = await response.json();
+  return data;
+};

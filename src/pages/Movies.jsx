@@ -1,10 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Movie from "../components/ui/Movie";
 import { movies } from "../data";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 
-const Movies = ({ movies: initialMovies, onSelectMovie }) => {
-  const [movies, setMovies] = useState(initialMovies);
+const Movies = () => {
+  const { id } = useParams();
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchMovies() {
+      const { data } = await axios.get(`https://www.omdbapi.com/?s=fast&apikey=2cc30c4d`);
+      setMovies(data.Search.slice(0, 6) || []);
+      setLoading(false);
+    }
+    fetchMovies();
+  }, []);
 
   function filterMovies(filter) {
     if (filter === "A_Z") {
@@ -34,16 +47,30 @@ const Movies = ({ movies: initialMovies, onSelectMovie }) => {
                   <option value="OLDEST_TO_NEWEST">Oldest to Newest</option> 
                 </select>
               </div>
-              <div className="movies">
+              { 
+                loading ? (
+                  new Array(6).fill().map((_, index) => (
+                    <div className="movie" key={index}>
+                <div className="movie__title">
+                  <div className="movie__title--skeleton"></div>
+                </div>
+                <figure className="movie__img--wrapper">
+                  <img className="movie__img--skeleton"></img>
+                </figure>
+              </div>
+                  ))
+              ) : (
+                <div className="movies">
                 {movies.map((movie) => (
                   <Movie
                     key={movie.imdbID}
                     title={movie.Title}
                     year={movie.Year}
-                    poster={movie.Poster}
+                    poster={movie.Poster} 
                   />
                 ))}
-              </div>
+                </div>
+              )}
             </div>
           </div>
         </section>
