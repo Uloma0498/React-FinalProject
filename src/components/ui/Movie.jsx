@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+
 
 const Movie = ({ title, releaseDate, imdbID, imageUrl }) => {
+  const { id } = useParams();
+    const [movie, setMovie] = useState([]);
+
+    useEffect(() => {
+    async function fetchMovie() {
+      const { data } = await axios.get(`https://www.omdbapi.com/?i=${id}&apikey=2cc30c4d`);
+      setMovie(data);
+    }
+    fetchMovie();
+  }, []);
+
     return (
         <div className="movie">
-            <Link to="/movies/1">
+            <Link to={`/movies/${imdbID}`}>
               <figure className="movie__img--wrapper">
                     <img 
                     src={imageUrl}
