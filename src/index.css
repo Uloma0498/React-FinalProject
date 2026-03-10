@@ -425,7 +425,7 @@ FEATURES
     color: #bfbfbf;
 }
 
-.movie__selected {
+.movie__selected--container {
     display: flex;
     padding: 24px;
     background-color: #fff;
@@ -544,6 +544,10 @@ footer {
 @media (max-width: 550px){
     .nav__links {
         display: none;
+    }
+
+    .menu__backdrop {
+        display: flex;
     }
 
     .btn__menu {

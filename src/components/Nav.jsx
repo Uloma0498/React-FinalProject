@@ -42,7 +42,7 @@ const Nav = () => {
               <Link to="/find-movies" className="menu__link">Find Movies</Link>
             </li>
             <li className="menu__list">
-              <span className="menu__link no-cursor">Contact</span>
+              <span className="menu__link btn__contact">Contact</span>
             </li>
           </ul>
           </div>

@@ -6,19 +6,23 @@ import { Link, useHistory } from "react-router-dom";
 
 
 
-
-
 const Landing = () => {
-  const [search, setSearch] = useState("");
+  const [searchFast, setSearchFast] = useState("");
   const history = useHistory();
 
   const handleSearch = (e) => {
     e.preventDefault();
-    history.push(`/movies/search/${search}`);
+    history.push(`/movies/search/${searchFast}`);
+  }
+
+  function onSearchKeyDown(key) {
+    if (key === "Enter") {
+      handleSearch();
+    }
   }
 
   return (
-    <section id="landing">
+    <section id="landing"> 
       <header>
         <div className="header__container">
           <div className="header__description">
@@ -29,11 +33,12 @@ const Landing = () => {
             <input 
               type="text" 
               placeholder="Search for movies..." className="search__input" 
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              value={searchFast}
+              onChange={(e) => setSearchFast(e.target.value)}
+              onKeyDown={(e) => onSearchKeyDown(e.key)}
             />
-            <Link to="/movies" className="btn">
-              <FontAwesomeIcon icon={faMagnifyingGlass}  />
+            <Link to="/movies" onClick={handleSearch} className="btn">
+              <FontAwesomeIcon icon={faMagnifyingGlass} />
             </Link>
             </form>
             </div>
