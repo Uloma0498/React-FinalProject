@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Movie from "../components/ui/Movie";
-import { movies } from "../data";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
@@ -57,7 +56,7 @@ const Movies = () => {
                 <div className="movies">
                 {movies.map((movie) => (
                   <Movie
-                    key={movie.imdbID}
+                    imdbID={movie.imdbID}
                     title={movie.Title}
                     year={movie.Year}
                     imageUrl={movie.Poster}

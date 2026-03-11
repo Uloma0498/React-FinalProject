@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { movies } from "../data";
 
 const MovieDetails = () => {
-  const [imdbID, setImdbID] = useState("");
+  const [movie, setMovie] = useState();
+  const { imdbID } = useParams();
 
   async function fetchMovieDetails() {
     const { data } = await axios.get(`https://www.omdbapi.com/?i=${imdbID}&apikey=2cc30c4d`);
-    setImdbID([data]);
+    setMovie(data);
   }
 
   useEffect(() => {
     fetchMovieDetails();
   }, [imdbID]);
+
 
   return (
     <div id="movies">
@@ -29,7 +31,7 @@ const MovieDetails = () => {
                 <h2 className="movie__selected--title--top">Movies</h2>
               </Link>
            </div>
-           <Link to ="/movies/${imdbID}" className="movie__link">
+           <Link to ="/movies/${imdbID} " className="movie__link">
               <div className="movie__selected" key={movies.imdbID}>
                  <figure className="movie__selected--figure">
                    <img 
