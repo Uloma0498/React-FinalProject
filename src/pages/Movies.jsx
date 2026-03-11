@@ -53,7 +53,7 @@ const Movies = () => {
               </div>
                   ))
               ) : (
-                <div className="movies">
+                <div className="movies" key={id}>
                 {movies.map((movie) => (
                   <Movie
                     imdbID={movie.imdbID}

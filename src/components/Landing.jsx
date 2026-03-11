@@ -12,14 +12,12 @@ const Landing = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    history.push(`/movies/search/${searchFast}`);
-  }
-
-  function onSearchKeyDown(key) {
-    if (key === "Enter") {
-      handleSearch();
+    if (searchFast.trim() !== "") {
+      history.push(`/movies?search=${encodeURIComponent(searchFast)}`);
     }
   }
+
+  
 
   return (
     <section id="landing"> 
@@ -35,7 +33,6 @@ const Landing = () => {
               placeholder="Search for movies..." className="search__input" 
               value={searchFast}
               onChange={(e) => setSearchFast(e.target.value)}
-              onKeyDown={(e) => onSearchKeyDown(e.key)}
             />
             <Link to="/movies" onClick={handleSearch} className="btn">
               <FontAwesomeIcon icon={faMagnifyingGlass} />
