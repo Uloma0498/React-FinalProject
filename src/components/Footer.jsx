@@ -13,7 +13,7 @@ const Footer = () => {
             </figure>
           </Link>
           <div className="footer__list">
-            <Link to="/home" className="footer__link">Home</Link>
+            <Link to="/" className="footer__link">Home</Link>
             <Link to="/movies" className="footer__link">Find Movies</Link>
             <Link to="/contact" className="footer__link">Contact</Link>
           </div>

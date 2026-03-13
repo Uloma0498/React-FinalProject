@@ -50,11 +50,11 @@ const MovieDetails = () => {
                        {movie?.Plot}
                      </p>
                    </div>
-                 </div>
-              </div>
-                <button className="btn">
+                   <button className="btn">
                   Add to Watchlist
                 </button>
+                 </div> 
+              </div>
              </div>
              </div>
             </main>

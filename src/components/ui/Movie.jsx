@@ -1,14 +1,37 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 
 const Movie = ({ title, releaseDate, imdbID, imageUrl }) => {
+    const [img, setImg] = useState();
+
+    const mountedRef = useRef(true)
+
+    useEffect(() => {
+     const image = new Image();
+     image.src = imageUrl;
+     image.onload = () => {
+       setTimeout(() => {
+        if (mountedRef.current) {
+       setImg(image)}; 
+       }, 300)
+       
+     }
+     return () => {
+     mountedRef.current = false;
+     }
+    })
+    
+
     return (
         <div className="movie">
-            <Link to={`/movies/${imdbID}`}>
+            {
+             img ? 
+             <>
+             <Link to={`/movies/${imdbID}`}>
               <figure className="movie__img--wrapper">
                     <img 
-                    src={imageUrl}
+                    src={img.src}
                     alt={title} 
                     className="movie__img"
                      />
@@ -19,9 +42,16 @@ const Movie = ({ title, releaseDate, imdbID, imageUrl }) => {
                 {title}
                 </Link>
             </div>
-            <div className="movie__year">{releaseDate}</div>
-            <div className="movie__imdbID">{imdbID}</div>
-        </div>
+            <div className="movie__year">{releaseDate}</div> 
+            </>
+            : <>
+            <div className="movie__img--skeleton"></div>
+            <div className="skeleton movie__title--skeleton"></div>
+             </>
+            }
+            
+            
+          </div>
     )
 }
 

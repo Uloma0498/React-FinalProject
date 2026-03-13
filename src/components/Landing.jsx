@@ -6,6 +6,7 @@ import { Link, useHistory } from "react-router-dom";
 
 
 
+
 const Landing = () => {
   const [searchFast, setSearchFast] = useState("");
   const history = useHistory();
