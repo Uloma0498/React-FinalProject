@@ -7,7 +7,7 @@ const Movies = () => {
   const { id } = useParams();
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [imageUrl, setimageUrl] = useState('https://via.placeholder.com/150');
+  const [imageUrl] = useState('https://www.omdbapi.com/?apikey=2cc30c4d&s=fast');
 
   useEffect(() => {
     async function fetchMovies() {
@@ -56,7 +56,7 @@ const Movies = () => {
                         <div className="movie__title--skeleton"></div>
                       </div>
                       <figure className="movie__img--wrapper">
-                        <img src={imageUrl} className="movie__img--skeleton" />
+                        <img src={imageUrl} className="movie__img--skeleton" alt="Loading..." />
                       </figure>
                     </div>
                   ))
