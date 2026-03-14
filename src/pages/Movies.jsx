@@ -48,14 +48,15 @@ const Movies = () => {
                   <div className="movie__title--skeleton"></div>
                 </div>
                 <figure className="movie__img--wrapper">
-                  <img className="movie__img--skeleton" alt=></img>
+                  <img src="path/to/placeholder-image.jpg" className="movie__img--skeleton"/>
                 </figure>
               </div>
                   ))
               ) : (
-                <div className="movies" key={id}>
+                <div className="movies" >
                 {movies.map((movie) => (
                   <Movie
+                    key={movie.imdbID}
                     imdbID={movie.imdbID}
                     title={movie.Title}
                     year={movie.Year}
