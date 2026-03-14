@@ -7,7 +7,7 @@ const Movies = () => {
   const { id } = useParams();
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [imageUrl, setimageUrl] = useState([]);
+  const [imageUrl, setimageUrl] = useState('https://via.placeholder.com/150');
 
   useEffect(() => {
     async function fetchMovies() {
