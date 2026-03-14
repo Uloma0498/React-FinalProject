@@ -29,8 +29,7 @@ nav {
 }
 
 img {
-    height: 100%;
-    width: 100%;
+    width:100%;
 }
 
 p {
@@ -43,6 +42,17 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+
+.nav__container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
 }
 
 .movies__container {
@@ -63,16 +73,6 @@ ul{
 
 li{
     list-style-type: none;
-}
-
-.nav__container {
-    width: 100%;
-    max-width: 1200px;
-    padding: 0 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 auto;
 }
 
 .nav__link {
@@ -331,7 +331,7 @@ MOVIES/:ID
 }
 
 .skeleton {
-    background-color: #cfcbcb !important;
+    background-color: #cfcbcb ;
     margin-bottom: 8px;
 }
 
@@ -531,5 +531,6 @@ footer {
     .btn__menu {
         display: block;
     }
+    
 }
 
