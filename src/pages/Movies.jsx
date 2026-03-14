@@ -3,28 +3,36 @@ import Movie from "../components/ui/Movie";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-
 const Movies = () => {
   const { id } = useParams();
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [imageUrl, setimageUrl] = useState([]);
 
   useEffect(() => {
     async function fetchMovies() {
-      const { data } = await axios.get(`https://www.omdbapi.com/?s=fast&apikey=2cc30c4d`);
-      setMovies(data.Search.slice(0, 6) || []);
-      setLoading(false);
+      try {
+        const { data } = await axios.get(`https://www.omdbapi.com/?s=fast&apikey=2cc30c4d`);
+        setMovies(data.Search.slice(0, 6) || []);
+      } catch (error) {
+        console.error("Error fetching movies:", error);
+      } finally {
+        setLoading(false);
+      }
     }
     fetchMovies();
   }, []);
 
   function filterMovies(filter) {
-    if (filter === "NEWEST_TO_OLDEST") {
-    setMovies(movies.slice().sort((a, b) => b.Year - a.Year));
-  } else if (filter === "OLDEST_TO_NEWEST") {
-    setMovies(movies.slice().sort((a, b) => a.Year - b.Year));
+    setMovies((prevMovies) => {
+      if (filter === "NEWEST_TO_OLDEST") {
+        return prevMovies.slice().sort((a, b) => b.Year - a.Year);
+      } else if (filter === "OLDEST_TO_NEWEST") {
+        return prevMovies.slice().sort((a, b) => a.Year - b.Year);
+      }
+      return prevMovies; // Return the previous state if no filter is applied
+    });
   }
-}
 
   return (
     <div id="movies">
@@ -44,33 +52,33 @@ const Movies = () => {
                 loading ? (
                   new Array(6).fill().map((_, index) => (
                     <div className="movie" key={index}>
-                <div className="movie__title">
-                  <div className="movie__title--skeleton"></div>
-                </div>
-                <figure className="movie__img--wrapper">
-                  <img src="path/to/placeholder-image.jpg" className="movie__img--skeleton"/>
-                </figure>
-              </div>
+                      <div className="movie__title">
+                        <div className="movie__title--skeleton"></div>
+                      </div>
+                      <figure className="movie__img--wrapper">
+                        <img src={imageUrl} className="movie__img--skeleton" />
+                      </figure>
+                    </div>
                   ))
-              ) : (
-                <div className="movies" >
-                {movies.map((movie) => (
-                  <Movie
-                    key={movie.imdbID}
-                    imdbID={movie.imdbID}
-                    title={movie.Title}
-                    year={movie.Year}
-                    imageUrl={movie.Poster}
-                   />
-                ))}
-                </div>
-              )}
+                ) : (
+                  <div className="movies">
+                    {movies.map((movie) => (
+                      <Movie
+                        key={movie.imdbID}
+                        imdbID={movie.imdbID}
+                        title={movie.Title}
+                        year={movie.Year}
+                        imageUrl={movie.Poster}
+                      />
+                    ))}
+                  </div>
+                )}
             </div>
           </div>
         </section>
       </main>
     </div>
-  )
+  );
 }
 
 export default Movies;
