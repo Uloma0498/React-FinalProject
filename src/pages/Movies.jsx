@@ -35,7 +35,7 @@ const Movies = () => {
               <div className="movies__header">
                 <h2 className="section__title movies__header--title">All Movies</h2>
                 <select id="filter" defaultValue="DEFAULT" onChange={(event) => filterMovies(event.target.value)} className="movies__header--filter">
-                  <option value="DEFAULT" disabled>Sort</option>
+                  <option value="DEFAULT" disabled> Sort </option>
                   <option value="NEWEST_TO_OLDEST">Newest to Oldest</option>
                   <option value="OLDEST_TO_NEWEST">Oldest to Newest</option> 
                 </select>
@@ -48,7 +48,7 @@ const Movies = () => {
                   <div className="movie__title--skeleton"></div>
                 </div>
                 <figure className="movie__img--wrapper">
-                  <img className="movie__img--skeleton"></img>
+                  <img className="movie__img--skeleton" alt=></img>
                 </figure>
               </div>
                   ))

@@ -14,7 +14,7 @@ const MovieDetails = () => {
 
   useEffect(() => {
     fetchMovieDetails();
-  }, [imdbID]);
+  }, [fetchMovieDetails]);
 
 
   return (
