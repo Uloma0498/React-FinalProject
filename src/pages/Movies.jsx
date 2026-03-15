@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Movie from "../components/ui/Movie";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 
 const Movies = () => {
-  const { id } = useParams();
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [imageUrl] = useState('https://www.omdbapi.com/?apikey=2cc30c4d&s=fast');
