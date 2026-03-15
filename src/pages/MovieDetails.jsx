@@ -7,13 +7,13 @@ const MovieDetails = () => {
   const [movie, setMovie] = useState();
   const { imdbID } = useParams();
 
-  useEffect(() => {}
-   async function fetchMovieDetails() {
+useEffect(() => {
+  async function fetchMovieDetails() {
     const { data } = await axios.get(`https://www.omdbapi.com/?i=${imdbID}&apikey=2cc30c4d`);
     setMovie(data);
   }
-    fetchMovieDetails();
-  }, [imdbID]);
+  fetchMovieDetails();
+}, [imdbID]);
 
 
   return (
